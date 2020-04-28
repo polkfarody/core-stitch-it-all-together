@@ -1,6 +1,6 @@
 from rest_framework import generics
-from stitch.apps.projects.models import Project
-from stitch.apps.projects.serializers import ProjectSerializer
+from projects.models import Project
+from projects.serializers import ProjectSerializer
 
 
 class ProjectList(generics.ListCreateAPIView):

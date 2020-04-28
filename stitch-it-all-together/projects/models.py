@@ -14,8 +14,11 @@ class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True, default='')
     type = models.SmallIntegerField(choices=TYPES, default=1)
+
+    owner = models.ForeignKey('stitchers.Stitcher', related_name='projects', on_delete=models.CASCADE)
+
     created = models.DateTimeField(auto_now_add=True)
-    owner = models.ForeignKey('auth.User', related_name='projects', on_delete=models.CASCADE)
+    modified = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         super(Project, self).save(*args, **kwargs)

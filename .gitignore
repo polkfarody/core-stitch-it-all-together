@@ -20,3 +20,13 @@ local_settings.py
 
 # SQLite3
 db.sqlite3
+
+*.DS_Store
+
+media
+media/*
+localsettings.py
+_collected_static
+_collected_static/*
+.idea
+.idea/*
