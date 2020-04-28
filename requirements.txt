@@ -1,2 +1,4 @@
 django
 djangorestframework
+markdown
+django-registration
