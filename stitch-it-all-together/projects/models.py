@@ -25,6 +25,3 @@ class Project(models.Model):
 
     class Meta:
         ordering = ['created']
-
-    def get_type_name(self):
-        return [name for id, name in TYPES if id == self.type][0]

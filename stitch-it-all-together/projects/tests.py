@@ -28,5 +28,6 @@ class ProjectsTestCase(TestCase):
             owner=self.test_stitcher
         )
 
-    def test_get_type_name_value(self):
-        self.assertEqual(self.test_project.get_type_name(), 'Music')
+    def test_get_type_display_value(self):
+        self.assertEqual(self.test_project.get_type_display(), 'Music')
+

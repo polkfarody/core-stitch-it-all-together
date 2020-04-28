@@ -19,9 +19,5 @@ class Stitcher(models.Model):
         help_text="How does one live their life?"
     )
 
-    def save(self, *args, **kwargs):
-        super(Stitcher, self).save(*args, **kwargs)
-
     def get_motto_uppercase(self):
         return self.motto.upper() if self.motto is not None else ''
-
