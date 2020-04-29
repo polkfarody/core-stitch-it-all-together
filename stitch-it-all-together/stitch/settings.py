@@ -153,6 +153,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Add a local settings file to override settings for development
 try:
-    from localsettings import *
+    from .localsettings import *
 except ImportError:
     pass
