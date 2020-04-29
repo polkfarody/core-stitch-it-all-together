@@ -4,3 +4,4 @@ django-cors-middleware
 markdown
 django-registration
 PyJWT
+drf-yasg

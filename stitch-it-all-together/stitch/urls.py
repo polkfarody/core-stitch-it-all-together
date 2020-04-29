@@ -1,8 +1,22 @@
 from django.contrib import admin
-from django.urls import path, include
-from django.conf.urls import include
+from django.urls import path
+from django.conf.urls import include, re_path
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
 from core.views import api_root
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Sitch It!",
+      default_version='v1',
+      description="Insert needle here",
+      terms_of_service="http://learntosew.com"
+   ),
+   public=True,
+   permission_classes=(permissions.AllowAny,),
+)
 
 # Base URLS
 urlpatterns = [
@@ -20,4 +34,15 @@ urlpatterns += [
 # Auth endpoint
 urlpatterns += [
     path('api-auth/', include('rest_framework.urls')),
+]
+
+# Auto API documentation
+urlpatterns += [
+    re_path(
+        r'^api/docs/openapi(?P<format>\.json|\.yaml)$',
+        schema_view.without_ui(cache_timeout=0),
+        name='schema-json'
+    ),
+    re_path(r'^api/docs/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    re_path(r'^api/docs/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
