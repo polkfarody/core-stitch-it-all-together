@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import include
 
-from base.views import api_root
+from core.views import api_root
 
 # Base URLS
 urlpatterns = [
@@ -12,6 +12,7 @@ urlpatterns = [
 
 # App urls
 urlpatterns += [
+    path('api/', include('authentication.urls')),
     path('api/', include('projects.urls')),
     path('api/', include('stitchers.urls')),
 ]

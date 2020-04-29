@@ -1,7 +1,6 @@
 from django.test import TestCase
 
-from django.contrib.auth.models import User
-
+from authentication.models import User
 from stitchers.models import Stitcher
 from .models import Project
 
@@ -30,4 +29,3 @@ class ProjectsTestCase(TestCase):
 
     def test_get_type_display_value(self):
         self.assertEqual(self.test_project.get_type_display(), 'Music')
-
