@@ -2,11 +2,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import include
 
-from stitch.views import api_root
+from base.views import api_root
 
+# Base URLS
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', api_root),
+]
+
+# App urls
+urlpatterns += [
     path('api/', include('projects.urls')),
     path('api/', include('stitchers.urls')),
 ]
