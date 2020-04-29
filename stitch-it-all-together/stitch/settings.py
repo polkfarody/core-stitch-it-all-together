@@ -38,14 +38,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_registration',
+    'corsheaders',
     'rest_framework',
     'projects',
     'stitchers',
+    'authentication',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -103,6 +107,25 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Custom User
+AUTH_USER_MODEL = 'authentication.User'
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'core.exceptions.core_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'authentication.backends.JWTAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 20,
+}
+
+CORS_ORIGIN_WHITELIST = (
+    '0.0.0.0:4000',
+    'localhost:3000',
+)
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -130,6 +153,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Add a local settings file to override settings for development
 try:
-    from localsettings import *
+    from .localsettings import *
 except ImportError:
     pass
