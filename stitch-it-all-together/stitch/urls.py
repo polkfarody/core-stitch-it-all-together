@@ -18,5 +18,5 @@ urlpatterns += [
 
 # Auth endpoint
 urlpatterns += [
-    path('api-auth/', include('rest_framework.urls')),
+    path('api/users/', include('rest_framework.urls')),
 ]

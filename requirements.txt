@@ -2,3 +2,4 @@ django
 djangorestframework
 markdown
 django-registration
+django-cors-middleware
