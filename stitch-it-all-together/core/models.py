@@ -185,11 +185,13 @@ class StatusModel(models.Model):
     status = models.IntegerField(
         db_index=True,
         help_text="The status of this instance",
-        default=STATUSES['ENABLED']
+        default=STATUSES['ENABLED'],
+        choices=STATUS_CHOICES
     )
 
     status_update_timestamp = models.DateTimeField(
-        help_text="Updated when ths status of this instance changes"
+        help_text="Updated when ths status of this instance changes",
+        editable=False
     )
 
     status_changes = GenericRelation(StatusChangeHistory)
