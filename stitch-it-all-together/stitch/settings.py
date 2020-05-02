@@ -38,10 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_registration',
-
+    'core',
     'corsheaders',
     'rest_framework',
-
     'projects',
     'stitchers',
 ]
@@ -138,6 +137,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Add a local settings file to override settings for development
 try:
-    from localsettings import *
+    from .localsettings import *
 except ImportError:
     pass
