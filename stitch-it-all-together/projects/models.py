@@ -1,12 +1,15 @@
 from django.db import models
 
 from django.db import models
-from softdelete.models import SoftDeleteModel
+from core.models import StatusModel
 
 from core.models import TimestampedModel
 
 
-class Project(SoftDeleteModel, TimestampedModel):
+class Project(StatusModel, TimestampedModel):
+
+    track_status_changes = True
+
     PROJECT_TYPES = sorted([
         (1, 'Music'),
         (2, 'Lyrics'),

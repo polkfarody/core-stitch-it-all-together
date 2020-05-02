@@ -3,4 +3,5 @@ djangorestframework
 markdown
 django-registration
 django-cors-middleware
-soft-delete
+freezegun
+
