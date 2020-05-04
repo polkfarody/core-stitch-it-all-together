@@ -19,7 +19,8 @@ urlpatterns += [
 
 # Auth endpoint
 urlpatterns += [
-    path('api/users/', include('rest_framework.urls')),
+    path('api/auth/', include('rest_auth.urls')),
+    path('api/auth/register/', include('rest_auth.registration.urls'))
 ]
 
 # Server local media files when in debug mode
