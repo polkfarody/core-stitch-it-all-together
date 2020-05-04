@@ -20,6 +20,14 @@ class TimestampedModel(models.Model):
         ordering = ['-created_at', '-updated_at']
 
 
+STATUS_CHOICES = (
+    (0, 'Enabled'),
+    (1, 'Deleted'),
+    (2, 'Suspended'),
+    (3, 'Archived')
+)
+
+
 class StatusChangeHistory(models.Model):
     """
     Tracks the changes of status
@@ -29,7 +37,11 @@ class StatusChangeHistory(models.Model):
 
     content_object = GenericForeignKey()
 
-    status = models.IntegerField(db_index=True, help_text="The status changed to this value")
+    status = models.IntegerField(
+        db_index=True,
+        help_text="The status changed to this value",
+        choices=STATUS_CHOICES
+    )
 
     # TODO: This model may be overkill, but audit trails are generally useful.
     # TODO: And this status changed auto magic can be updated to collect other things like users, etc
@@ -42,6 +54,8 @@ class StatusChangeHistory(models.Model):
         )
 
         ordering = ('-timestamp',)
+
+        verbose_name_plural = 'Status change histories'
 
     @classmethod
     def status_change_entry(cls, instance, created=False):
@@ -80,6 +94,9 @@ class StatusChangeHistory(models.Model):
             return
 
         StatusChangeHistory.status_change_entry(instance)
+
+    def __str__(self):
+        return "<{} {}>".format(self.get_status_display(), self.timestamp)
 
 
 signals.post_save.connect(StatusChangeHistory.signal_handler)
@@ -171,12 +188,7 @@ class StatusModelManager(models.Manager):
 
 class StatusModel(models.Model):
 
-    STATUS_CHOICES = (
-        (0, 'Enabled'),
-        (1, 'Deleted'),
-        (2, 'Suspended'),
-        (3, 'Archived')
-    )
+    STATUS_CHOICES = STATUS_CHOICES
 
     STATUSES = {
         v.upper(): k for k, v in STATUS_CHOICES

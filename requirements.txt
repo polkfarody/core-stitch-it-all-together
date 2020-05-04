@@ -4,4 +4,6 @@ markdown
 django-registration
 django-cors-middleware
 freezegun
-
+Pillow
+python-magic
+django-extensions

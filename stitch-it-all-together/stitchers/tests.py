@@ -14,10 +14,7 @@ class StitchersTestCase(TestCase):
             password='lukepassword'
         )
 
-        self.test_stitcher = Stitcher.objects.create(
-            user=self.test_auth_user,
-            motto=None
-        )
+        self.test_stitcher = self.test_auth_user.stitcher  # Signal handler should create this
 
     def test_get_motto_uppercase_none(self):
         self.assertEqual(self.test_stitcher.get_motto_uppercase(), '')
