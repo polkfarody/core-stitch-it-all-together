@@ -7,3 +7,5 @@ freezegun
 Pillow
 python-magic
 django-extensions
+django-rest-auth
+django-allauth
